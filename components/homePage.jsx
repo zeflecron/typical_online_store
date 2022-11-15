@@ -18,24 +18,23 @@ const HomePage = () => {
       <main>
         <section>
           <h2 className="text-4xl p-4 text-center text-orange-400 xl:text-6xl">
-            Typical Online Store
+            Typical E-commerce
           </h2>
           <p className="text-xl p-4 text-center xl:text-2xl">
-            The very very totally extremely most typical online store out there,
-            selling
+            The very very totally extremely most E-commerce out there, selling
             <span className="text-green-500"> FRESH </span>fruits and
             vegetables!
           </p>
           <Image
             src={home_img_0}
-            className="mx-auto object-cover h-64 w-64 rounded-full border-2 border-green-400 xl:h-96 xl:w-96"
+            className="mx-auto object-cover h-64 w-64 rounded-full xl:h-96 xl:w-96"
             alt="home_img_0"
           />
         </section>
-        <section>
+        <section className="mx-8">
           <h3 className="text-2xl p-4 text-center xl:text-4xl">Services</h3>
           <div className="lg:flex 2xl:mx-48">
-            <div className="text-center shadow-xl rounded-xl m-6 border-2 border-lime-500">
+            <div className="text-center shadow-xl rounded-xl m-8 hover:shadow-2xl">
               <Image
                 src={home_img_1}
                 className="mx-auto object-cover w-full h-48 rounded-t-xl"
@@ -46,7 +45,7 @@ const HomePage = () => {
                 preservatives than the average fruits and vegetables out there!
               </p>
             </div>
-            <div className="text-center shadow-xl rounded-xl m-6 border-2 border-lime-500">
+            <div className="text-center shadow-xl rounded-xl m-8 hover:shadow-2xl">
               <Image
                 src={home_img_2}
                 className="mx-auto object-cover w-full h-48 rounded-t-xl"
@@ -57,7 +56,7 @@ const HomePage = () => {
                 available when product is not in a good condition!
               </p>
             </div>
-            <div className="text-center shadow-xl rounded-xl m-6 border-2 border-lime-500">
+            <div className="text-center shadow-xl rounded-xl m-8 hover:shadow-2xl">
               <Image
                 src={home_img_3}
                 className="mx-auto object-cover w-full h-48 rounded-t-xl"

@@ -12,16 +12,16 @@ class Products extends Component {
         {products.map((product) => (
           <div
             key={product.id}
-            className="mx-auto shadow-xl rounded-xl border-4 border-lime-500 w-80"
+            className="bg-white mx-auto shadow-xl border-4 border-gray-400 w-80"
           >
             <Image
               src={products_img[product.image]}
               alt={product.altImage}
               layout="responsive"
-              className="object-cover w-full rounded-t-lg bg-gradient-to-t from-emerald-200"
+              className="object-cover w-full rounded-t-lg"
             />
-            <div className="rounded-b-lg bg-gradient-to-t from-emerald-400 to-emerald-200">
-              <div className="pl-5 text-lg font-bold border-b-2 border-t-2 border-lime-700">
+            <div className="rounded-b-lg">
+              <div className="pl-5 text-lg font-bold border-b-2 border-t-2 border-gray-400">
                 <p>{product.name}</p>
                 <p>Price: ${product.price}</p>
                 <p>Available: {this.formatInStock(product.inStock)}</p>
