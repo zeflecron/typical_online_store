@@ -1,2 +1,2 @@
-# typical_online_store
+# typical_e-commerce
  
