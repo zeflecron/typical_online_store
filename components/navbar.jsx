@@ -27,7 +27,7 @@ const NavBar = ({ totalProducts }) => {
               : "hidden w-full md:block md:w-auto"
           }
         >
-          <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+          <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-latoBold">
             <li>
               <Link
                 href="/"
@@ -39,17 +39,17 @@ const NavBar = ({ totalProducts }) => {
             <li>
               <Link
                 href="/products"
-                className="block py-2 pr-4 pl-3 text-white hover:bg-green-400 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0"
+                className="flex py-2 pr-4 pl-3 text-white hover:bg-green-400 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0"
               >
                 Products
               </Link>
             </li>
             <li>
               <Link
-                href="#"
-                className="flex flex-row py-2 pr-4 pl-3 text-white hover:bg-green-400 border-b md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0"
+                href="/cart"
+                className="flex py-2 pr-4 pl-3 text-white hover:bg-green-400 border-b md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0"
               >
-                <AiOutlineShoppingCart className="text-xl mr-2" /> Total $
+                <AiOutlineShoppingCart className="text-xl mr-2" /> Cart $
                 {totalProducts}
               </Link>
             </li>
