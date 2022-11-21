@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BsFillMoonStarsFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
@@ -12,7 +11,7 @@ const NavBar = ({ totalProducts }) => {
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link href="/" className="flex">
           <span className="text-white self-center text-xl font-bold whitespace-nowrap dark:text-white">
-            Typical E-commerce
+            Typical Online Store
           </span>
         </Link>
         <div
@@ -59,7 +58,7 @@ const NavBar = ({ totalProducts }) => {
                 href="/login"
                 className="block py-2 pr-4 pl-3 text-white hover:bg-green-400 md:hover:bg-transparent md:border-0 md:hover:text-black md:p-0"
               >
-                Login/Register
+                Login
               </Link>
             </li>
           </ul>

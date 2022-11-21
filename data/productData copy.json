@@ -15,7 +15,7 @@
       "image": "bad_banana.png",
       "altImage": "banana",
       "inStock": 22,
-      "price": 3,
+      "price": 3.6,
       "value": 0
     },
     {
@@ -23,7 +23,7 @@
       "name": "Orange",
       "image": "bad_orange.png",
       "altImage": "orange",
-      "inStock": 30,
+      "inStock": 3,
       "price": 7,
       "value": 0
     },
@@ -32,7 +32,7 @@
       "name": "Cucumber",
       "image": "bad_cucumber.png",
       "altImage": "cucumber",
-      "inStock": 71,
+      "inStock": 0,
       "price": 2.5,
       "value": 0
     },
