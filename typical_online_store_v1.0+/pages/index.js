@@ -39,9 +39,6 @@ export default function HomePage() {
             <span className="text-green-500"> FRESH </span>fruits and
             vegetables!
           </p>
-          <p className="text-xl p-4 text-center xl:text-2xl">
-            Also yes the image is not aligned, hard to find the proper one :)
-          </p>
           <Image
             src={home_img_0}
             className="mx-auto object-cover h-64 w-64 rounded-full xl:h-96 xl:w-96"
