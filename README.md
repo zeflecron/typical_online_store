@@ -2,6 +2,8 @@
 
 Typical Online store using Next.js, React.js, and Tailwind CSS
 
+https://user-images.githubusercontent.com/96768007/205582066-f70165b7-22b2-42c0-8618-c124cd76b89d.mp4
+
 ## Features:
 
 - Utilizes Next.js features such as `<Link>`, `<Image>`, and `<Head>`
