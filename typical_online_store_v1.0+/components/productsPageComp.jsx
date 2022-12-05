@@ -1,12 +1,17 @@
+// TODO: TRY TO SAVE DATA INTO DATABASE IN THE FUTURE
+
 import Products from "./products";
 import React, { Component } from "react";
-import * as ProductData from "../data/db.json";
 
 class ProductsPageComp extends Component {
-  // see addToCart for details
-  state = ProductData;
+  // see addToCart for better details on all the functions
+  constructor(props) {
+    super(props);
+    this.state = { products: this.props.products, total: 0 };
+  }
 
   handleIncrement = (product) => {
+    console.log(this.state);
     const products = [...this.state.products];
     const index = products.indexOf(product);
     products[index] = { ...product };
@@ -28,7 +33,7 @@ class ProductsPageComp extends Component {
 
   addToCart = (product) => {
     if (product.value !== 0) {
-      // copy current products
+      // iterate a copy of current products
       const products = [...this.state.products];
 
       // get the index value of parameter product
@@ -41,6 +46,8 @@ class ProductsPageComp extends Component {
       products[index] = { ...product };
 
       // change stock based on parameter value
+      // value is not products[index].value because the state in the front-end is used
+      // using state from back-end would just be 0
       products[index].inStock = products[index].inStock - product.value;
 
       // reset product value on screen and in state

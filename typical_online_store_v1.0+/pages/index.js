@@ -7,6 +7,7 @@ import home_img_3 from "../public/home/home_img_3.jpg";
 import { motion as m } from "framer-motion";
 
 // images from (not in order, one of them was on old pic that is unused):
+// https://unsplash.com/@thoughtcatalog
 // https://unsplash.com/@alienowicz
 // https://unsplash.com/@iconquistador
 // https://unsplash.com/@dancristianpaduret
@@ -22,8 +23,10 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <m.main
+        key={"key1"}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         exit={{ opacity: 0 }}
         className="font-latoRegular"
       >

@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently --kill-others \"json-server --watch data/db.json -p 4000\" \"next dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "concurrently": "^7.6.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.6.6",
     "next": "13.0.0",

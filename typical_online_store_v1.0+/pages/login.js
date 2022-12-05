@@ -55,6 +55,7 @@ export default function LoginPage() {
       <m.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeIn" }}
         exit={{ opacity: 0 }}
         className="w-full my-16"
       >

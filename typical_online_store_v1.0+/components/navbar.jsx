@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
 
-const NavBar = ({ totalProducts }) => {
+export default function NavBar({ totalProducts }) {
   const [isOpen, toggleCollapse] = useState(false);
 
   return (
@@ -66,6 +66,4 @@ const NavBar = ({ totalProducts }) => {
       </div>
     </nav>
   );
-};
-
-export default NavBar;
+}

@@ -1,8 +1,9 @@
 import Head from "next/head";
 import ProductsPageComp from "../components/productsPageComp";
 import { motion as m } from "framer-motion";
+import { getProductsData } from "./api/get_productsData";
 
-export default function ProductsPage() {
+export default function ProductsPage({ products }) {
   return (
     <>
       <Head>
@@ -13,6 +14,7 @@ export default function ProductsPage() {
       <m.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         exit={{ opacity: 0 }}
         className="font-latoRegular"
       >
@@ -21,21 +23,22 @@ export default function ProductsPage() {
             <p>THIS IS CURRENTLY ONLY FOR FRONT-END, NO DATABASES YET</p>
             <p>
               THE TOTAL ON THE NAVBAR WILL NOT UPDATE BECAUSE IT IS NOT SAVED
-              ANYWHERE
-            </p>
-            <p>
-              HOWEVER THE ONE MADE DIRECTLY CONNECTED TO THE COMPONENT BELOW
-              WORKS
-            </p>
-            <p>
-              Also finding images one by one is hard, decided to just make it
-              myself with <span className="text-pink-600">very high </span>
-              effort ;)
+              ANYWHERE :(
             </p>
           </div>
         </section>
-        <ProductsPageComp />
+        <ProductsPageComp products={products} />
       </m.main>
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  const productsData = await getProductsData();
+
+  return {
+    props: {
+      products: productsData,
+    },
+  };
+};
