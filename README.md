@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/96768007/205582066-f70165b7-22b2-42c0-
 1. Download, extract, and open typical_online_store-v1.0+
 2. Go to the directory in cmd and type in `npm i`
 3. Once finished, type in `npm run dev`
-4. Go to a web browser and type in `localhost:3000` as the link
+4. Go to a web browser and type in `localhost:3000` as the link, `localhost:4000` for the database (need to also add the key to access it like `localhost:4000/products`)
 
 ## Additional info
 
