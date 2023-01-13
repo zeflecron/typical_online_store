@@ -59,7 +59,7 @@ export default function LoginPage() {
         exit={{ opacity: 0 }}
         className="w-full my-16"
       >
-        <div className="h-screen flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <form
             onSubmit={formik.handleSubmit}
             className="bg-white flex rounded-lg font-latoRegular max-w-md"
