@@ -1,4 +1,10 @@
 Note: images, screenshots, gifs, and videos will only be updated if it has relevant changes
 
+v1.1.0 (05-12-2022)
+- change data fetching method from manual importing local device to getServerSideProps()
+- fixed framer-motion not properly working by adding AnimatePresence in app.js
+- fixed success page problem where h6 tag was inside p (which is not allowed)
+- changed some names and some code formats
+
 v1.0.0 (23-11-2022)
 - Initial upload
