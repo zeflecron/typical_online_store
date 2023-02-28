@@ -1,0 +1,97 @@
+{
+  "global": {
+    "userCtr": 3,
+    "productCtr": 7,
+    "cartCtr": 3,
+    "loggedIn": false,
+    "loggedUser": 1
+  },
+  "users": [
+    {
+      "id": 1,
+      "username": "123123123",
+      "password": "123123123",
+      "email": "123@gmail.com",
+      "country": "Germany",
+      "terms": true,
+      "newsletter": false
+    },
+    {
+      "username": "asdasd",
+      "password": "12341234",
+      "email": "1234@t.com",
+      "country": "Netherlands",
+      "terms": true,
+      "newsletter": true,
+      "id": 2
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "image": "apple.png",
+      "altImage": "apple",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At risus viverra adipiscing at in tellus integer feugiat. Quis vel eros donec ac odio tempor. Mauris a diam maecenas sed enim ut sem viverra aliquet. Auctor elit sed vulputate mi sit. Vitae auctor eu augue ut lectus arcu bibendum at varius. Tempus iaculis urna id volutpat. Consectetur libero id faucibus nisl tincidunt eget nullam non. Aliquam purus sit amet luctus venenatis lectus magna fringilla urna. Id semper risus in hendrerit gravida rutrum quisque. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Amet cursus sit amet dictum sit amet justo donec. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Lorem dolor sed viverra ipsum. Bibendum arcu vitae elementum curabitur vitae. Ullamcorper velit sed ullamcorper morbi.",
+      "inStock": 55,
+      "price": 4
+    },
+    {
+      "id": 2,
+      "name": "Banana",
+      "image": "banana.png",
+      "altImage": "banana",
+      "description": "This is a short description about the product itself. Copy pasting Lorem Ipsum is a bit too common and also tends to be way too long",
+      "inStock": 17,
+      "price": 3.6
+    },
+    {
+      "id": 3,
+      "name": "Orange",
+      "image": "orange.png",
+      "altImage": "orange",
+      "description": "Thismessageisonpurposenotseparatedbyspacestoseeiftailwindcsscandetectnonspacedsentecesandspreadthemproperly(unlikebootstrapcssasfarasIknow)",
+      "inStock": 15,
+      "price": 7
+    },
+    {
+      "id": 4,
+      "name": "Cherry",
+      "image": "cherry.png",
+      "altImage": "cherry",
+      "description": "none",
+      "inStock": 4,
+      "price": 10
+    },
+    {
+      "id": 5,
+      "name": "Carrot",
+      "image": "carrot.png",
+      "altImage": "carrot",
+      "description": "none",
+      "inStock": 9999976,
+      "price": 2
+    },
+    {
+      "id": 6,
+      "name": "Lemon",
+      "image": "lemon.png",
+      "altImage": "lemon",
+      "description": "none",
+      "inStock": 2,
+      "price": 13.31
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "productid": 1,
+      "quantity": 6
+    },
+    {
+      "id": 2,
+      "productid": 6,
+      "quantity": 1
+    }
+  ]
+}
