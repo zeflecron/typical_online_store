@@ -1,29 +1,31 @@
 {
   "global": {
-    "userCtr": 3,
+    "userCtr": 11,
     "productCtr": 7,
-    "cartCtr": 5,
+    "cartCtr": 43,
+    "salt": "$2a$10$r4R3gK/vb2xn.FLUF63TdO",
     "loggedIn": false,
-    "loggedUser": 1
+    "loggedUserId": 0,
+    "loggedUserName": ""
   },
   "users": [
     {
-      "id": 1,
-      "username": "123123123",
-      "password": "123123123",
+      "username": "123123",
+      "password": "$2a$10$r4R3gK/vb2xn.FLUF63TdOdOn.hGhezwykHmTOJDdkhCQOEiTl/9K",
+      "email": "123123123123@a.com",
+      "country": "Australia",
+      "terms": true,
+      "newsletter": false,
+      "id": 4
+    },
+    {
+      "username": "1234",
+      "password": "$2a$10$r4R3gK/vb2xn.FLUF63TdOwV1rFjmwWMmanvWSowzeiJb8ZkGZX9O",
       "email": "123@gmail.com",
       "country": "Germany",
       "terms": true,
-      "newsletter": false
-    },
-    {
-      "username": "asdasd",
-      "password": "12341234",
-      "email": "1234@t.com",
-      "country": "Netherlands",
-      "terms": true,
       "newsletter": true,
-      "id": 2
+      "id": 10
     }
   ],
   "products": [
@@ -33,7 +35,7 @@
       "image": "apple.png",
       "altImage": "apple",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At risus viverra adipiscing at in tellus integer feugiat. Quis vel eros donec ac odio tempor. Mauris a diam maecenas sed enim ut sem viverra aliquet. Auctor elit sed vulputate mi sit. Vitae auctor eu augue ut lectus arcu bibendum at varius. Tempus iaculis urna id volutpat. Consectetur libero id faucibus nisl tincidunt eget nullam non. Aliquam purus sit amet luctus venenatis lectus magna fringilla urna. Id semper risus in hendrerit gravida rutrum quisque. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Amet cursus sit amet dictum sit amet justo donec. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Lorem dolor sed viverra ipsum. Bibendum arcu vitae elementum curabitur vitae. Ullamcorper velit sed ullamcorper morbi.",
-      "inStock": 61,
+      "inStock": 88,
       "price": 4
     },
     {
@@ -51,7 +53,7 @@
       "image": "orange.png",
       "altImage": "orange",
       "description": "Thismessageisonpurposenotseparatedbyspacestoseeiftailwindcsscandetectnonspacedsentecesandspreadthemproperly(unlikebootstrapcssasfarasIknow)",
-      "inStock": 15,
+      "inStock": 1,
       "price": 7
     },
     {
@@ -69,7 +71,7 @@
       "image": "carrot.png",
       "altImage": "carrot",
       "description": "none",
-      "inStock": 9999976,
+      "inStock": 9999966,
       "price": 2
     },
     {
@@ -82,5 +84,18 @@
       "price": 13.31
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": 41,
+      "userId": 10,
+      "productId": 3,
+      "quantity": 5
+    },
+    {
+      "id": 42,
+      "userId": 4,
+      "productId": 1,
+      "quantity": 4
+    }
+  ]
 }

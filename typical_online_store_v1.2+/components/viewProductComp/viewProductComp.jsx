@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 import products_img from "../../public";
 import ProductCounter from "./productCounter";
@@ -14,6 +17,8 @@ class ViewProductComp extends Component {
     this.state = {
       product: this.props.product,
       valCtr: 0,
+      messageType: "",
+      message: "",
     };
   }
 
@@ -36,123 +41,84 @@ class ViewProductComp extends Component {
   };
 
   addToCart = async (product) => {
-    if (this.state.valCtr !== 0) {
-      let globalValues = await globalHandler("GET");
-      let cartData = await cartHandler("GET");
-      let cartModifyId = -1;
-      let data = {
-        id: globalValues.cartCtr,
-        productid: product.id,
-        quantity: this.state.valCtr,
-      };
+    try {
+      if (this.state.valCtr !== 0) {
+        let globalValues = await globalHandler("GET");
+        let cartId = globalValues.cartCtr;
+        let currentUserId = globalValues.loggedUserId;
 
-      // checks if product already exists in cart
-      for (let i = 0; i < cartData.length; i++) {
-        if (cartData[i].productid === data.productid) {
-          cartModifyId = cartData[i].id;
+        let cartData = await cartHandler("GET", "", undefined, currentUserId);
+        let cartModifyId = -1;
+        let data = {
+          id: cartId,
+          userId: currentUserId,
+          productId: product.id,
+          quantity: this.state.valCtr,
+        };
+
+        // checks if product already exists in cart
+        for (let i = 0; i < cartData.length; i++) {
+          if (cartData[i].productId === data.productId) {
+            cartModifyId = cartData[i].id;
+          }
         }
+
+        // if exists just add the quantity and using "PUT"
+        if (cartModifyId !== -1) {
+          console.log(cartModifyId);
+          let specificCartData = await cartHandler("GET", "None", cartModifyId);
+          data.quantity = data.quantity + specificCartData.quantity;
+          await cartHandler("PUT", data, cartModifyId);
+        } else {
+          await cartHandler("POST", data);
+          globalValues.cartCtr = globalValues.cartCtr + 1;
+          await globalHandler("PUT", globalValues);
+        }
+
+        // update product state on screen, and the product in database
+        product.inStock = product.inStock - this.state.valCtr;
+        this.state.valCtr = 0;
+        this.setState({
+          product,
+          messageType: "success",
+          message: "Item has been successfully added to cart!",
+        });
+        await productHandler("PUT", this.state.product, product.id);
       }
-
-      // if exists just add the quantity and using "PUT"
-      if (cartModifyId !== -1) {
-        let specificCartData = await cartHandler("GET", "None", cartModifyId);
-        data.quantity = data.quantity + specificCartData.quantity;
-        await cartHandler("PUT", data, cartModifyId);
-      } else {
-        await cartHandler("POST", data);
-        globalValues.cartCtr = globalValues.cartCtr + 1;
-        await globalHandler("PUT", globalValues);
-      }
-
-      // update global counters, product state on screen, and the product in database
-
-      product.inStock = product.inStock - this.state.valCtr;
-      this.state.valCtr = 0;
-      this.setState({ product });
-      await productHandler("PUT", this.state.product, product.id);
+    } catch (err) {
+      console.error(err);
+      this.setState({
+        messageType: "error",
+        message: `Something is wrong. ${err}`,
+      });
     }
   };
-
-  // AN ATTEMPT TO USE PROMISES SO DATABASE WILL NOT BE UNSTABLE
-  //   if (this.state.valCtr !== 0) {
-  //     let globalValues = await globalHandler("GET");
-  //     let cartData = await cartHandler("GET");
-  //     let cartModifyId = -1;
-  //     let data = {
-  //       id: globalValues.cartCtr,
-  //       productid: product.id,
-  //       quantity: this.state.valCtr,
-  //     };
-  //     let cartPromise;
-
-  //     // checks if product already exists in cart
-  //     for (let i = 0; i < cartData.length; i++) {
-  //       if (cartData[i].productid === data.productid) {
-  //         cartModifyId = cartData[i].id;
-  //       }
-  //     }
-
-  //     // if exists just add the quantity and using "PUT"
-  //     if (cartModifyId !== -1) {
-  //       let specificCartData = await cartHandler("GET", "None", cartModifyId);
-  //       data.quantity = data.quantity + specificCartData.quantity;
-  //       cartPromise = new Promise((resolve, reject) => {
-  //         cartHandler("PUT", data, cartModifyId)
-  //           .then((response) => {
-  //             if (response.ok) {
-  //               resolve(response);
-  //             } else {
-  //               reject(
-  //                 new Error(
-  //                   `Failed to submit data to cart. Status: ${response.status}`
-  //                 )
-  //               );
-  //             }
-  //           })
-  //           .catch((err) => reject(err));
-  //       });
-  //     } else {
-  //       cartPromise = new Promise((resolve, reject) => {
-  //         cartHandler("POST", data)
-  //           .then((response) => {
-  //             if (response.ok) {
-  //               resolve(response);
-  //             } else {
-  //               reject(
-  //                 new Error(
-  //                   `Failed to submit data to cart. Status: ${response.status}`
-  //                 )
-  //               );
-  //             }
-  //           })
-  //           .catch((err) => reject(err));
-  //       });
-  //       globalValues.cartCtr = globalValues.cartCtr + 1;
-  //       await globalHandler("PUT", globalValues);
-  //     }
-
-  //     // update global counters, product state on screen, and the product in database
-
-  //     product.inStock = product.inStock - this.state.valCtr;
-  //     this.state.valCtr = 0;
-  //     this.setState({ product });
-
-  //     const productPromise = new Promise((resolve, reject) => {
-  //       productHandler("PUT", this.state.product, product.id)
-  //         .then((res) => resolve(res))
-  //         .catch((err) => reject(err));
-  //     });
-  //     try {
-  //       await Promise.all([cartPromise, productPromise]);
-  //     } catch (err) {
-  //       console.log("there is an error");
-  //     }
-  //   }
-  // };
 
   render() {
     return (
       <>
+        <section className="flex">
+          <div>
+            <Link
+              href="/products"
+              className="ml-10 mt-4 w-32 flex items-center bg-teal-500 hover:bg-teal-400 text-white text-lg font-bold py-2 px-4 border-b-4 border-teal-700 hover:border-teal-500 rounded md:ml-24 lg:ml-10 2xl:ml-48"
+            >
+              <AiOutlineArrowLeft className="text-2xl" />
+              Return
+            </Link>
+          </div>
+          {this.state.messageType === "error" ? (
+            <div className="ml-4 mt-4 mr-10 p-4 flex items-center justify-center bg-rose-100 w-full font-latoBold text-l text-red-500 md:mr-24 lg:mr-8 2xl:mr-48">
+              {this.state.message}
+            </div>
+          ) : this.state.messageType === "success" ? (
+            <div className="ml-4 mt-4 mr-10 p-4 flex items-center justify-center bg-teal-100 w-full font-latoBold text-l text-teal-500 md:mr-24 lg:mr-8 2xl:mr-48">
+              {this.state.message}
+            </div>
+          ) : (
+            <></>
+          )}
+        </section>
         <section className="grid grid-cols-1 m-8 bg-white shadow-xl border-4 border-gray-200 w-auto md:mx-24 lg:grid-cols-2 lg:mx-8 2xl:mx-48">
           <div>
             <Image

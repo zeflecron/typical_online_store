@@ -42,7 +42,7 @@ class CartComp extends Component {
     });
 
     // remove from cart database and return the quantity back to the product stock
-    let productData = await productHandler("GET", "", cartContent.productid);
+    let productData = await productHandler("GET", "", cartContent.productId);
     productData.inStock = productData.inStock + cartContent.quantity;
     await productHandler("PUT", productData, productData.id);
     await cartHandler("DELETE", "", cartContent.id);

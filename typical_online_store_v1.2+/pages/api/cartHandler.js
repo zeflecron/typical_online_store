@@ -1,8 +1,6 @@
 import { productHandler } from "./productHandler";
 
-export async function cartHandler(method, data, id) {
-  data = data || "";
-
+export async function cartHandler(method, data, id, userId) {
   const url = "http://localhost:4000/cart";
   const resource = id !== undefined ? `${url}/${id}` : url;
 
@@ -13,38 +11,53 @@ export async function cartHandler(method, data, id) {
       ? { method: `${method}`, headers: headers, body: body }
       : { method: "DELETE" };
 
+  // check if fetch works, if not, throw error
+  function checkRes(res) {
+    if (!res.ok) {
+      throw `${res.status}`;
+    }
+  }
+
   try {
-    if (method === "GET" && id === undefined) {
+    // TODO: only get based on logged in user id
+    // gets all cart contents of a certain user
+    if (method === "GET" && userId !== undefined) {
       const res = await fetch(resource);
+      checkRes(res);
       const cart = await res.json();
       let cartContents = [];
 
       for (let i = 0; i < cart.length; i++) {
-        let data = await productHandler("GET", "", cart[i].productid);
-        data.id = cart[i].id;
-        data.productid = cart[i].productid;
-        data.quantity = cart[i].quantity;
-        delete data.description;
-        delete data.inStock;
-        cartContents.push(data);
+        if (cart[i].userId === userId) {
+          let data = await productHandler("GET", "", cart[i].productId);
+          data.id = cart[i].id;
+          data.productId = cart[i].productId;
+          data.quantity = cart[i].quantity;
+          delete data.description;
+          delete data.inStock;
+          cartContents.push(data);
+        }
       }
 
       return cartContents;
-    } else if (method === "GET") {
+    }
+    // gets specific cart data, used in viewProductComp.jsx,
+    // where dupilcates will just be added into the value instead of creating a new id
+    else if (method === "GET") {
       const res = await fetch(resource);
+      checkRes(res);
       const specificCart = await res.json();
       return specificCart;
     } else if (method === "POST" || method === "PUT" || method === "DELETE") {
       const res = await fetch(resource, options);
-      console.log(res);
-      return res;
+      checkRes(res);
     } else {
-      console.log(method);
-      console.log(data);
-      console.log(id);
+      console.log(
+        `One of the parameters is incorrect: \n${method}\n${data}\n${id}`
+      );
     }
   } catch (err) {
-    console.log(err);
-    // throw err;
+    // `new Error(...)` gives the `Error: ...` format
+    throw new Error(err);
   }
 }

@@ -3,10 +3,16 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { motion as m } from "framer-motion";
+import bcrypt from "bcryptjs";
+
+import { globalHandler } from "./api/globalHandler";
+import { userHandler } from "./api/userHandler";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [error, setError] = useState("");
 
   // formik
   const formik = useFormik({
@@ -25,9 +31,23 @@ export default function LoginPage() {
         .required("Password is required"),
     }),
 
-    onSubmit: (values) => {
-      console.log(values);
-      router.push({ pathname: "/success", query: values });
+    onSubmit: async (values) => {
+      let user = await userHandler("GET", "", undefined, values.email);
+      let globalValues = await globalHandler("GET");
+
+      if (typeof user === "undefined") {
+        console.log("called");
+        setError("There are no users with this email address");
+      } else if (bcrypt.compareSync(values.password, user.password)) {
+        setError("");
+        globalValues.loggedIn = true;
+        globalValues.loggedUserId = user.id;
+        globalValues.loggedUserName = user.username;
+        await globalHandler("PUT", globalValues);
+        router.push({ pathname: "/" });
+      } else {
+        setError("Incorrect password");
+      }
     },
   });
 
@@ -106,6 +126,11 @@ export default function LoginPage() {
                       : ""}
                   </p>
                 </div>
+                {error && (
+                  <div className="block font-latoBold text-sm pt-2 text-red-500">
+                    {error}
+                  </div>
+                )}
                 <button
                   type="submit"
                   className="bg-emerald-500 font-latoBold text-sm text-white py-3 my-6 rounded-lg w-full hover:bg-purple-500"

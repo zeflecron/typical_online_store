@@ -3,6 +3,7 @@ import { motion as m } from "framer-motion";
 
 import CartComp from "../components/cartComp/cartComp";
 import { cartHandler } from "./api/cartHandler";
+import { globalHandler } from "./api/globalHandler";
 
 export default function HomePage({ cart }) {
   return (
@@ -27,7 +28,10 @@ export default function HomePage({ cart }) {
 }
 
 export const getServerSideProps = async () => {
-  const cartData = await cartHandler("GET");
+  const globalValues = await globalHandler("GET");
+  const currentUserId = globalValues.loggedUserId;
+
+  const cartData = await cartHandler("GET", "", undefined, currentUserId);
 
   return {
     props: {

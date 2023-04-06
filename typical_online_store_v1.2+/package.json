@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^7.6.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.6.6",

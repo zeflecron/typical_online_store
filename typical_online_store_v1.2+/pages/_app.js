@@ -4,8 +4,9 @@ import { AnimatePresence } from "framer-motion";
 
 import NavBar from "../components/globalComp/navbar";
 import Footer from "../components/globalComp/footer";
+import { globalHandler } from "./api/globalHandler";
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps, router, navbarData }) {
   // to ensure that the app is not remounted every time switching pages
   useEffect(() => {
     console.log("App Mounted");
@@ -15,7 +16,7 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <>
-      <NavBar totalProducts={0} />
+      <NavBar data={navbarData} />
       <AnimatePresence initial={false} mode={"wait"}>
         <Component key={router.pathname} {...pageProps} />
       </AnimatePresence>
@@ -23,5 +24,13 @@ function MyApp({ Component, pageProps, router }) {
     </>
   );
 }
+
+MyApp.getInitialProps = async () => {
+  const navbarDataRes = await globalHandler("GET");
+
+  return {
+    navbarData: navbarDataRes,
+  };
+};
 
 export default MyApp;
