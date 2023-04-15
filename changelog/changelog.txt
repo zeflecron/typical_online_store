@@ -8,7 +8,10 @@ Note: images, screenshots, gifs, and videos will only be updated if it has relev
 // 5. Unit testing, integration testing, and/or E2E testing with Jest/Cypress/something...
 // 6. Recreation using Angular and Vue (version 1.2 or later, whatever I want)
 
-v1.3 (06-04-2023)
+v1.3.1 (15-04-2023)
+- edit profile now shows viewProfile page in which user can go to editProfile page if the logged in user matches with the shown profile
+
+v1.3.0 (06-04-2023)
 - CRUD functions that interacts with the database now throws an error properly (this means promises in async/await runs as intended)
 - user can now login and logout and the status of that is checked using getInitialProps in _app.js (may not be the correct way)
 - user creation of password is now salted
@@ -17,7 +20,7 @@ v1.3 (06-04-2023)
 - added a message when an item successfully/failed to be added to cart
 - fixed some titles in <Head>
 
-v1.2 (28-02-2023)
+v1.2.0 (28-02-2023)
 - added login, cart, and view product page
 - added icons to all links in navbar
 - added folders for each components

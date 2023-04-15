@@ -26,22 +26,29 @@ export default function ViewProductPage({ product }) {
 }
 
 export const getServerSideProps = async (ctx) => {
-  const { query } = ctx;
-  // prevents user to go to this page without the router data
-  // also this if statement checks if query is empty or not
-  if (Object.keys(query).length === 0 || query.id === undefined) {
+  try {
+    const { query } = ctx;
+    // prevents user to go to this page without the router data
+    // also this if statement checks if query is empty or not
+    if (Object.keys(query).length === 0 || query.productId === undefined) {
+      return {
+        redirect: {
+          destination: "/products",
+          permanent: false,
+        },
+      };
+    } else {
+      const productData = await productHandler("GET", "None", query.productId);
+      return {
+        props: {
+          product: productData,
+        },
+      };
+    }
+  } catch (err) {
+    console.log(err);
     return {
-      redirect: {
-        destination: "/products",
-        permanent: false,
-      },
-    };
-  } else {
-    const productData = await productHandler("GET", "None", query.id);
-    return {
-      props: {
-        product: productData,
-      },
+      notFound: true,
     };
   }
 };

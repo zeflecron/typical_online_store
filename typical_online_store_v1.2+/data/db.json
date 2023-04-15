@@ -1,12 +1,12 @@
 {
   "global": {
-    "userCtr": 11,
+    "userCtr": 12,
     "productCtr": 7,
     "cartCtr": 43,
     "salt": "$2a$10$r4R3gK/vb2xn.FLUF63TdO",
-    "loggedIn": false,
-    "loggedUserId": 0,
-    "loggedUserName": ""
+    "loggedIn": true,
+    "loggedUserId": 4,
+    "loggedUserName": "123123"
   },
   "users": [
     {

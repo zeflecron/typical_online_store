@@ -24,10 +24,13 @@ export async function userHandler(method, data, id, email) {
       checkRes(res);
       const users = await res.json();
       return users;
-    } else if (method === "GET") {
+    }
+    // when you forget why this is even needed because you never finished the function that uses it...
+    // this is used for registration to prevent the same email used for another account
+    // although now it becomes extremely confusing, need to refactor this in the future
+    else if (method === "GET") {
       const res = await fetch(resource);
       const users = await res.json();
-
       for (let i = 0; i < users.length; i++) {
         if (users[i].email.toLowerCase() == email.toLowerCase()) {
           let user = users[i];

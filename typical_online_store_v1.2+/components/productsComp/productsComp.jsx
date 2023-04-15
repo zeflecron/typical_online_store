@@ -12,7 +12,7 @@ class ProductsComp extends Component {
   }
 
   viewProduct = (product) => {
-    Router.push({ pathname: "/viewProduct", query: { id: product.id } });
+    Router.push({ pathname: "/viewProduct", query: { productId: product.id } });
   };
 
   formatInStock = (productInStock) => {

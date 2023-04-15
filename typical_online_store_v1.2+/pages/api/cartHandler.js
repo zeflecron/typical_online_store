@@ -19,7 +19,6 @@ export async function cartHandler(method, data, id, userId) {
   }
 
   try {
-    // TODO: only get based on logged in user id
     // gets all cart contents of a certain user
     if (method === "GET" && userId !== undefined) {
       const res = await fetch(resource);

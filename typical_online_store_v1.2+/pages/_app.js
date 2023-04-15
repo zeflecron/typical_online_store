@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import React from "react";
 import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -16,11 +17,13 @@ function MyApp({ Component, pageProps, router, navbarData }) {
 
   return (
     <>
-      <NavBar data={navbarData} />
-      <AnimatePresence initial={false} mode={"wait"}>
-        <Component key={router.pathname} {...pageProps} />
-      </AnimatePresence>
-      <Footer />
+      <React.StrictMode>
+        <NavBar data={navbarData} />
+        <AnimatePresence initial={false} mode={"wait"}>
+          <Component key={router.pathname} {...pageProps} />
+        </AnimatePresence>
+        <Footer />
+      </React.StrictMode>
     </>
   );
 }
